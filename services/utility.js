@@ -13,27 +13,28 @@ const ErrorTypes = {
   INVALID_AGE_RANGE: 'invalid_age_range',
   USER_DOES_NOT_EXIST: 'user_does_not_exist',
   DELETING_FAILD: 'deleting faild',
+  PERMISSION_DENID: 'permission_denid',
+  NAME_MISSING: 'name_missing',
   UNKNOWN_ERROR: 'unknown_error'
 };
 class Utility {
-  static parse.Query (req, res, next) {
-    req.query.offset = parseInt(req.query.offset);
-    if(!isFinite (req.query.offset)) {
-      req.query.offset = AppConstants.OFFSET_DEFAULT_VALUE;
-    }
+    static parseQuery(req, res, next) {
+        req.query.offset = parseInt(req.query.offset);
+        if (!isFinite(req.query.offset)) {
+            req.query.offset = AppConstants.OFFSET_DEFAULT_VALUE;
+        }
 
-    req.query.limit = parseInt(req.query.limit);
-    if(!isFinite (req.query.limit)) {
-      req.query.limit = AppConstants.LIMIT_DEFAULT_VALUE;
+        req.query.limit = parseInt(req.query.limit);
+        if (!isFinite(req.query.limit)) {
+            req.query.limit = AppConstants.LIMIT_DEFAULT_VALUE;
+        }
+        next();
     }
-
-    next();
-  }
 
   static generateErrorMessage (type, message, options) {
       options = options || {};
       let error_object = {
-        type: type ||ErrorTypes.UNKNOWN_ERROR,
+        type: type || ErrorTypes.UNKNOWN_ERROR,
         message: 'Somtyhing went wrong'
       }
       switch (type) {
@@ -68,10 +69,19 @@ class Utility {
         case ErrorTypes.DELETING_FAILD:
             error_object.message = 'deleting is faild';
             break;
-        }
+        case ErrorTypes.PERMISSION_DENID:
+            error_object.message = 'You must be registrate';
+            break;
+        case ErrorTypes.NAME_MISSING:
+            error_object.message = 'name is missing';
+            break;
+        case ErrorTypes.INVALID_NAME_RANGE:
+            error_object.message = 'invalid name range';
+            break;
+          }
             return error_object;
     }
 }
 
 module.exports = Utility;
-module.exports = ErrorTypes;
+module.exports.ErrorTypes = ErrorTypes;

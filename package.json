@@ -1,19 +1,27 @@
 {
   "name": "newapp",
   "version": "1.0.0",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bezoyan/newApplication.git"
+  },
+  "author": "Zoya",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bezoyan/newApplication/issues"
+  },
+  "homepage": "https://github.com/Bezoyan/newApplication#readme",
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body": "^5.1.0",
     "crypto": "^1.0.1",
     "express": "^4.16.2",
     "keygenerator": "^1.0.4",
-    "mongoose": "^4.12.4"
-  },
-  "devDependencies": {},
-  "description": ""
+    "mongoose": "^4.13.0",
+    "parser": "^0.1.4"
+  }
 }

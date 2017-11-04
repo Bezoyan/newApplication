@@ -1,7 +1,7 @@
 const BaseValidator = require('./base');
 
 const Utility = require('./../utility');
-const AppConstants = require('./../settings/constants');
+const AppConstants = require('./../../settings/constants');
 class EmailValidator extends BaseValidator {
     constructor() {
       super();
